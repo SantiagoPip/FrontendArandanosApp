@@ -46,6 +46,7 @@ export class ExcelPrediccionesComponent {
   }
 
   uploadAndPredict(): void {
+
     if (this.selectedFile) {
       this.excelService.procesarArchivo(this.selectedFile).subscribe({
         next: (response: Blob) => {
@@ -85,7 +86,6 @@ export class ExcelPrediccionesComponent {
               }
             }
           };
-
           reader.readAsArrayBuffer(response);
 
           Swal.fire({
@@ -95,6 +95,7 @@ export class ExcelPrediccionesComponent {
             confirmButtonText: 'Aceptar'
           });
         },
+
         error: (error) => {
           console.error('Error al procesar archivo', error);
           this.errorMessage = error.message;
@@ -203,6 +204,8 @@ export class ExcelPrediccionesComponent {
         }
       }
     });
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
   }
 
   downloadPredictions(): void {
