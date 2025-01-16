@@ -1,0 +1,65 @@
+<div class="excel-predicciones-container">
+  <h2>Predicción de Excel</h2>
+  <p>Esta es una aplicacion para hacer predicciones porfavor suba una archivo en formato excel con las siguientes columnas 'Variedad_B', ' mm Precipitation', ' m/s Gust Speed', 'IP', ' mm/h Max Precip Rate', 'Semana', 'Variedad_W', 'Variedad_V',' °C Air Temperature', 'PFIG','PFG','Variedad_L' para realizar las predicciones semanalmente del cultivo</p>
+  <!-- Sección para cargar archivo Excel -->
+  <div class="file-upload">
+    <label for="fileInput" class="file-label">Selecciona un archivo Excel:</label>
+    <input
+      type="file"
+      id="fileInput"
+      (change)="onFileSelected($event)"
+      accept=".xls, .xlsx"
+      class="file-input"
+    />
+    <span *ngIf="selectedFile" class="file-name">{{ selectedFile.name }}</span>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="action-buttons">
+    <button
+      (click)="uploadAndPredict()"
+      [disabled]="!selectedFile"
+      class="upload-btn"
+    >
+      Subir y Predecir
+    </button>
+    <button
+      *ngIf="downloadableFile"
+      (click)="downloadPredictions()"
+      class="download-btn"
+    >
+      Descargar Predicciones
+    </button>
+  </div>
+
+<!-- Botón para cambiar entre tabla y gráfica -->
+<div class="view-toggle-container" *ngIf="filteredTableData.length > 0">
+  <button (click)="toggleView()" class="toggle-view-btn">
+    {{ showChart ? 'Mostrar Tabla' : 'Mostrar Gráfica' }}
+  </button>
+</div>
+  <!-- Vista de Tabla -->
+  <div *ngIf="!showChart && filteredTableData.length > 0" class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Semana</th>
+          <th>Predicciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of filteredTableData">
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Vista de Gráfica -->
+  <div *ngIf="showChart && filteredTableData.length > 0" class="chart-container">
+    <h3>Gráfica de Predicciones</h3>
+    <canvas #chartCanvas></canvas>
+  </div>
+
+</div>
