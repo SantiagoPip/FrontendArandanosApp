@@ -1,7 +1,14 @@
 <div class="excel-predicciones-container">
   <h2>Predicción de Excel</h2>
+  <div class="action-buttons">
+    <!-- Botón para probar el método GET -->
+    <button (click)="testGetMethod()" class="test-get-btn">
+      Probar Método GET
+    </button>
+  </div>
   <p>Esta aplicación está diseñada para realizar predicciones semanales sobre el cultivo. Por favor, cargue un archivo en formato Excel que contenga las siguientes columnas con datos relevantes: 'Variedad_B', 'mm Precipitation', 'm/s Gust Speed', 'IP', 'mm/h Max Precip Rate', 'Semana', 'Variedad_W', 'Variedad_V', '°C Air Temperature', 'PFIG', 'PFG', y 'Variedad_L'. Asegúrese de que la información esté correctamente organizada para que el modelo pueda procesarla y generar predicciones precisas sobre el rendimiento semanal del cultivo.</p>
   <!-- Sección para cargar archivo Excel -->
+
   <div class="file-upload">
     <label for="fileInput" class="file-label">Selecciona un archivo Excel:</label>
     <input
@@ -31,6 +38,7 @@
       Descargar Predicciones
     </button>
   </div>
+
 
 <!-- Botón para cambiar entre tabla y gráfica -->
 <div class="view-toggle-container" *ngIf="filteredTableData.length > 0">

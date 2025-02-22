@@ -44,7 +44,28 @@ export class ExcelPrediccionesComponent {
       }
     }
   }
-
+  testGetMethod(): void {
+    this.excelService.testBackend().subscribe({
+      next: (response) => {
+        // Mostrar una alerta de éxito con la respuesta del servidor
+        Swal.fire({
+          icon: 'success',
+          title: 'GET exitoso',
+          text: 'Respuesta del servidor: ' + JSON.stringify(response),
+          confirmButtonText: 'Aceptar'
+        });
+      },
+      error: (error) => {
+        // Mostrar una alerta de error si la solicitud falla
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en GET',
+          text: 'Error: ' + error.message,
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
+  }
   uploadAndPredict(): void {
 
     if (this.selectedFile) {
@@ -198,7 +219,7 @@ export class ExcelPrediccionesComponent {
           y: {
             title: {
               display: true,
-              text: 'Predicciones'
+              text: 'Cantidad de frutos recolectados'
             }
           }
         }

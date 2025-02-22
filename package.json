@@ -1,13 +1,15 @@
 {
   "name": "predicciones-excel",
   "version": "0.0.0",
+  "homepage": "https://Santiago.Pip.github.io/FrontendArandanosApp",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:Predicciones_Excel": "node dist/predicciones-excel/server/server.mjs"
+    "serve:ssr:Predicciones_Excel": "node dist/predicciones-excel/server/server.mjs",
+    "deploy":"npm run build && gh-pages -d docs"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +25,7 @@
     "@angular/ssr": "^18.0.3",
     "chart.js": "^4.4.7",
     "express": "^4.18.2",
+    "gh-pages": "^6.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",

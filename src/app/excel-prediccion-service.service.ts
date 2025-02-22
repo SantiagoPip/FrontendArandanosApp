@@ -15,12 +15,16 @@ interface PrediccionResult {
 })
 export class ExcelPrediccionService {
   constructor(private http: HttpClient) {}
+  testBackend(): Observable<any> {
+    const url = 'http://127.0.0.1:5001';
+    return this.http.get(url);
+  }
 
   procesarArchivo(file: File): Observable<Blob> {
     const formData = new FormData();
     formData.append('file', file);
 
-    const url = 'http://localhost:5000/predict';
+    const url = 'http://127.0.0.1:5001/predict';
     console.log('Procesando archivo en el backend');
 
     // Configura para recibir un Blob
